@@ -7,8 +7,9 @@ Created by Felix Tietjen on 09-Mar-2017
 import io
 import sqlite3
 
-class Guild:
+class Database:
     def __init__(self):
-        print("Hallo Oleg")
+        print("Loading Database...")
+        connection = sqlite3.connect('database.db')
+        
 
-Guild()
