@@ -7,9 +7,9 @@ sql_init_folder = 'sql_init'
 # Database helper for our project.
 # Created by Felix Tietjen on 09-Mar-2017
 class Database:
-    
+
     connection = None
-    
+
     def __init__(self):
         print("Loading Database...")
         self.connection = sqlite3.connect('database.db')
