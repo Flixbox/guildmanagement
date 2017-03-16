@@ -69,6 +69,5 @@ class Guild(Console):
     def viewFinances(self):
         Bank.viewFinances()
 
-
 # Execute main application.
 Guild()
