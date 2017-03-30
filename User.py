@@ -1,4 +1,5 @@
 import io
+from datetime import datetime
 from Database import Database
 from Console import Console
 
@@ -51,3 +52,22 @@ class User(Console):
         self.birthday = self.promptNonEmpty()
         self.log("Job: ")
         self.job = self.promptNonEmpty()
+        self.log("Conditions: ")
+        self.conditions = self.promptNonEmpty()
+        self.log("IBAN: ")
+        self.iban = self.promptNonEmpty()
+        self.database._execute_file(
+            'add_user.sql',
+            (self.salutation,
+            self.firstname,
+            self.lastname,
+            self.street,
+            self.zipcode,
+            self.city,
+            self.country,
+            self.birthday,
+            self.job,
+            self.conditions,
+            self.iban,
+            datetime.now(),
+            datetime.now()))
