@@ -56,7 +56,7 @@ class User(Console):
         self.conditions = self.promptNonEmpty()
         self.log("IBAN: ")
         self.iban = self.promptNonEmpty()
-        self.database._execute_file(
+        result = self.database._execute_file(
             'add_user.sql',
             (self.salutation,
             self.firstname,
@@ -71,3 +71,4 @@ class User(Console):
             self.iban,
             datetime.now(),
             datetime.now()))
+        self.log(result)

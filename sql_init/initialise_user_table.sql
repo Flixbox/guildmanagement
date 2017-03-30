@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(10) NOT NULL,
+  `id` INTEGER,
   `salutation` varchar(255) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,

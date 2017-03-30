@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `transaction_history` (
-  `id` int(10) NOT NULL,
+  `id` INTEGER,
   `user_id` varchar(255) NOT NULL,
   `value` float(255) NOT NULL,
   `message` float(255),
