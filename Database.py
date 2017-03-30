@@ -26,6 +26,6 @@ class Database:
         c.execute(data)
         self.connection.commit()
 
-    # Close the sql connection, when the object is deleted.
+    # Close the sql connection when the object is deleted.
     def __del__(self):
         self.connection.close()

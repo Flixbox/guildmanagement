@@ -32,6 +32,12 @@ class Console:
         self.log(' > ' + command)
         return command
 
+    def promptNonEmpty(self):
+        command = ""
+        while not bool(command.strip()): # Checks for empty string
+            command = self.prompt()
+        return command
+
     def logToFile(self, message):
         logging.info(self.getTime() + ': ' + message.rstrip())
 

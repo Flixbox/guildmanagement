@@ -64,10 +64,10 @@ class Guild(Console):
         User()
 
     def drawMembershipFees(self):
-        Bank.drawMembershipFees()
+        Bank().drawMembershipFees()
 
     def viewFinances(self):
-        Bank.viewFinances()
+        Bank().viewFinances()
 
 # Execute main application.
 Guild()
