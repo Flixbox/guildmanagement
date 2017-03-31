@@ -2,6 +2,7 @@ import io
 from datetime import datetime
 from Database import Database
 from Console import Console
+from prettytable import PrettyTable
 
 # Main class for our project.
 # Created by Felix Tietjen on 09-Mar-2017
@@ -21,7 +22,28 @@ class Bank(Console):
         self.database = Database()
 
     def viewFinances(self):
-        pass # do stuff here
+        # TODO PRETTYTABLE
+        table = PrettyTable([
+            'Transaction ID',
+            'User ID',
+            'Name',
+            'Amount',
+            'Comment'
+        ])
+        transaction_history = self.database.execute_file(self.database.sql_folder + '//' + "get_transaction_history.sql")
+        self.log(str(transaction_history))
+        self.clearConsole()
+        cash = 0
+        for t in transaction_history:
+            fee = t[2]
+            table.add_row([t[0], t[1], 'User Name here TODO', str(fee), t[3]])
+            try:
+                cash = cash + int(fee)
+            except:
+                pass # If the fee is not an integer, we'll just ignore it
+        self.log(table)
+        self.log("Balance: " + str(cash))
+        self.prompt() # Wait for user input
 
     def drawMembershipFees(self):
         users = self.database.execute_file(self.database.sql_folder + '//' + "get_users.sql")
