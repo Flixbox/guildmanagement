@@ -52,12 +52,12 @@ class User(Console):
         self.birthday = self.promptNonEmpty()
         self.log("Job: ")
         self.job = self.promptNonEmpty()
-        self.log("Conditions: ")
+        self.log("Conditions (% off): ")
         self.conditions = self.promptNonEmpty()
         self.log("IBAN: ")
         self.iban = self.promptNonEmpty()
         result = self.database._execute_file(
-            'add_user.sql',
+            self.database.sql_folder + '//' + 'add_user.sql',
             (self.salutation,
             self.firstname,
             self.lastname,

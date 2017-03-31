@@ -2,12 +2,12 @@ import os
 import io
 import sqlite3
 
-sql_init_folder = 'sql_init'
-sql_edit_folder = 'sql_edit'
-
 # Database helper for our project.
 # Created by Felix Tietjen on 09-Mar-2017
 class Database:
+
+    sql_init_folder = 'sql_init'
+    sql_folder = 'sql'
 
     connection = None
 
@@ -15,24 +15,28 @@ class Database:
         print("Loading Database...")
         self.connection = sqlite3.connect('database.db')
         # Executes every single sql file in the folder.
-        for file in os.listdir(sql_init_folder):
-            self.execute_file(file)
+        for file in os.listdir(self.sql_init_folder):
+            self.execute_file(self.sql_init_folder + '//' + file)
 
-    # Execute a single sql file.
+    # Execute a single sql file without arguments.
     def execute_file(self, location):
         print("Executing file " + location)
         c = self.connection.cursor()
-        with open(sql_init_folder + '//' + location, 'r') as myfile:
+        with open(location, 'r') as myfile:
             data = myfile.read().replace('\n', ' ')
         c.execute(data)
+        data = c.fetchall()
         self.connection.commit()
+        return data
 
     # Execute a single sql file with arguments.
     def _execute_file(self, location, args):
         print("Executing file " + location + " with arguments " + str(args))
-        with open(sql_edit_folder + '//' + location, 'r') as myfile:
+        with open(location, 'r') as myfile:
             data = myfile.read().replace('\n', ' ')
-        return self._execute(data, args)
+        data = self._execute(data, args)
+        self.connection.commit()
+        return data
 
     # Executes a command with arguments.
     def _execute(self, command, args):
