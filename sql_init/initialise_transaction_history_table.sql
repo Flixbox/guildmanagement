@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `transaction_history` (
   `id` INTEGER,
-  `user_id` varchar(255) NOT NULL,
+  `user_id` INTEGER NOT NULL,
   `value` float(255) NOT NULL,
   `message` float(255),
   `iban_from` varchar(255) NOT NULL,
